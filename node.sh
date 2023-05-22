@@ -4,8 +4,5 @@ sudo apt install nodejs
 node --version
 npm --version
 npx dalai alpaca install 65B
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-brew install cmake
-brew install pkg-config
-npm install -g npm@latest
+sudo apt-get install build-essential python3-venv -y
 npx dalai serve
