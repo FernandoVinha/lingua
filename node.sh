@@ -1,8 +1,22 @@
-curl -fsSL https://deb.nodesource.com/gpgkey/nodesource.gpg.key | sudo gpg --dearmor -o /usr/share/keyrings/nodesource.gpg
-echo "deb [signed-by=/usr/share/keyrings/nodesource.gpg] https://deb.nodesource.com/node $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/nodesource.list
-sudo apt install nodejs
-node --version
-npm --version
-npx dalai alpaca install 65B
-sudo apt-get install build-essential python3-venv -y
-npx dalai serve
+#!/bin/bash
+
+# Verifica se o Node.js está instalado
+if ! command -v node &> /dev/null; then
+    echo "Node.js não está instalado. Instalando Node.js..."
+    # Instala o Node.js
+    curl -fsSL https://deb.nodesource.com/setup_lts.x | sudo -E bash -
+    sudo apt-get install -y nodejs
+    echo "Node.js foi instalado com sucesso."
+fi
+
+# Verifica se o yarn está instalado
+if ! command -v yarn &> /dev/null; then
+    echo "Yarn não está instalado. Instalando Yarn..."
+    # Instala o Yarn
+    npm install -g yarn
+    echo "Yarn foi instalado com sucesso."
+fi
+
+# Executa o comando "dalai alpaca install 7B"
+echo "Executando 'dalai alpaca install 7B'..."
+npx dalai alpaca install 7B
