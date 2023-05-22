@@ -19,7 +19,22 @@ if ! command -v docker-compose &> /dev/null; then
     echo "Docker Compose foi instalado com sucesso."
 fi
 
-# Executa o comando "dalai alpaca install 7B"
-echo "Executando 'dalai alpaca install 7B'..."
+# Conteúdo do arquivo docker-compose.yml
+DOCKER_COMPOSE_CONTENT='
+version: "3.8"
+services:
+  dalai:
+    image: alpacamarket/dalai:latest
+    command: npx dalai alpaca install 7B
+'
+
+# Cria um arquivo temporário docker-compose.yml
+echo "$DOCKER_COMPOSE_CONTENT" > docker-compose.yml
+
+# Executa o comando "docker-compose"
+echo "Executando 'docker-compose run dalai npx dalai alpaca install 7B'..."
 docker-compose run dalai npx dalai alpaca install 7B
+
+# Remove o arquivo temporário docker-compose.yml
+rm docker-compose.yml
 
